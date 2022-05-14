@@ -2,8 +2,440 @@
   "name": "http",
   "rules": {
     "source_file": {
-      "type": "STRING",
-      "value": "hello"
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "_definition"
+        },
+        {
+          "type": "BLANK"
+        }
+      ]
+    },
+    "_definition": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "start_line"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "newline"
+        },
+        {
+          "type": "REPEAT",
+          "content": {
+            "type": "SYMBOL",
+            "name": "header"
+          }
+        }
+      ]
+    },
+    "start_line": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "request_line"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "status_line"
+        }
+      ]
+    },
+    "request_line": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "FIELD",
+          "name": "method",
+          "content": {
+            "type": "SYMBOL",
+            "name": "method"
+          }
+        },
+        {
+          "type": "STRING",
+          "value": " "
+        },
+        {
+          "type": "FIELD",
+          "name": "target",
+          "content": {
+            "type": "SYMBOL",
+            "name": "target"
+          }
+        },
+        {
+          "type": "STRING",
+          "value": " "
+        },
+        {
+          "type": "FIELD",
+          "name": "version",
+          "content": {
+            "type": "SYMBOL",
+            "name": "version"
+          }
+        }
+      ]
+    },
+    "method": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "GET"
+        },
+        {
+          "type": "STRING",
+          "value": "PUT"
+        },
+        {
+          "type": "STRING",
+          "value": "ACL"
+        },
+        {
+          "type": "STRING",
+          "value": "HEAD"
+        },
+        {
+          "type": "STRING",
+          "value": "POST"
+        },
+        {
+          "type": "STRING",
+          "value": "COPY"
+        },
+        {
+          "type": "STRING",
+          "value": "LOCK"
+        },
+        {
+          "type": "STRING",
+          "value": "MOVE"
+        },
+        {
+          "type": "STRING",
+          "value": "BIND"
+        },
+        {
+          "type": "STRING",
+          "value": "LINK"
+        },
+        {
+          "type": "STRING",
+          "value": "PATCH"
+        },
+        {
+          "type": "STRING",
+          "value": "TRACE"
+        },
+        {
+          "type": "STRING",
+          "value": "MKCOL"
+        },
+        {
+          "type": "STRING",
+          "value": "MERGE"
+        },
+        {
+          "type": "STRING",
+          "value": "PURGE"
+        },
+        {
+          "type": "STRING",
+          "value": "NOTIFY"
+        },
+        {
+          "type": "STRING",
+          "value": "SEARCH"
+        },
+        {
+          "type": "STRING",
+          "value": "UNLOCK"
+        },
+        {
+          "type": "STRING",
+          "value": "REBIND"
+        },
+        {
+          "type": "STRING",
+          "value": "UNBIND"
+        },
+        {
+          "type": "STRING",
+          "value": "REPORT"
+        },
+        {
+          "type": "STRING",
+          "value": "DELETE"
+        },
+        {
+          "type": "STRING",
+          "value": "UNLINK"
+        },
+        {
+          "type": "STRING",
+          "value": "CONNECT"
+        },
+        {
+          "type": "STRING",
+          "value": "MSEARCH"
+        },
+        {
+          "type": "STRING",
+          "value": "OPTIONS"
+        },
+        {
+          "type": "STRING",
+          "value": "PROPFIND"
+        },
+        {
+          "type": "STRING",
+          "value": "CHECKOUT"
+        },
+        {
+          "type": "STRING",
+          "value": "PROPPATCH"
+        },
+        {
+          "type": "STRING",
+          "value": "SUBSCRIBE"
+        },
+        {
+          "type": "STRING",
+          "value": "MKCALENDAR"
+        },
+        {
+          "type": "STRING",
+          "value": "MKACTIVITY"
+        },
+        {
+          "type": "STRING",
+          "value": "UNSUBSCRIBE"
+        },
+        {
+          "type": "STRING",
+          "value": "SOURCE"
+        }
+      ]
+    },
+    "target": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "FIELD",
+          "name": "path",
+          "content": {
+            "type": "SYMBOL",
+            "name": "path"
+          }
+        },
+        {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SEQ",
+              "members": [
+                {
+                  "type": "STRING",
+                  "value": "?"
+                },
+                {
+                  "type": "REPEAT",
+                  "content": {
+                    "type": "SEQ",
+                    "members": [
+                      {
+                        "type": "SYMBOL",
+                        "name": "query_item"
+                      },
+                      {
+                        "type": "CHOICE",
+                        "members": [
+                          {
+                            "type": "STRING",
+                            "value": "&"
+                          },
+                          {
+                            "type": "BLANK"
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                }
+              ]
+            },
+            {
+              "type": "BLANK"
+            }
+          ]
+        },
+        {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SYMBOL",
+              "name": "hash"
+            },
+            {
+              "type": "BLANK"
+            }
+          ]
+        }
+      ]
+    },
+    "path": {
+      "type": "PATTERN",
+      "value": "[^ ?#]+"
+    },
+    "query_item": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "FIELD",
+          "name": "query_name",
+          "content": {
+            "type": "SYMBOL",
+            "name": "query_name"
+          }
+        },
+        {
+          "type": "STRING",
+          "value": "="
+        },
+        {
+          "type": "FIELD",
+          "name": "query_value",
+          "content": {
+            "type": "SYMBOL",
+            "name": "query_value"
+          }
+        }
+      ]
+    },
+    "query_name": {
+      "type": "PATTERN",
+      "value": "[^ =&#]+"
+    },
+    "query_value": {
+      "type": "PATTERN",
+      "value": "[^ =&#]+"
+    },
+    "hash": {
+      "type": "PATTERN",
+      "value": "#[^ ]*"
+    },
+    "version": {
+      "type": "PATTERN",
+      "value": "HTTP\\/\\d\\.\\d"
+    },
+    "status_line": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "FIELD",
+          "name": "version",
+          "content": {
+            "type": "SYMBOL",
+            "name": "version"
+          }
+        },
+        {
+          "type": "STRING",
+          "value": " "
+        },
+        {
+          "type": "FIELD",
+          "name": "status",
+          "content": {
+            "type": "SYMBOL",
+            "name": "status"
+          }
+        },
+        {
+          "type": "STRING",
+          "value": " "
+        },
+        {
+          "type": "FIELD",
+          "name": "reason",
+          "content": {
+            "type": "SYMBOL",
+            "name": "reason"
+          }
+        }
+      ]
+    },
+    "status": {
+      "type": "PATTERN",
+      "value": "\\d+"
+    },
+    "reason": {
+      "type": "PATTERN",
+      "value": "[^\\n]+"
+    },
+    "header": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "FIELD",
+          "name": "header_name",
+          "content": {
+            "type": "SYMBOL",
+            "name": "header_name"
+          }
+        },
+        {
+          "type": "STRING",
+          "value": ":"
+        },
+        {
+          "type": "REPEAT1",
+          "content": {
+            "type": "STRING",
+            "value": " "
+          }
+        },
+        {
+          "type": "FIELD",
+          "name": "header_value",
+          "content": {
+            "type": "SYMBOL",
+            "name": "header_value"
+          }
+        },
+        {
+          "type": "SYMBOL",
+          "name": "newline"
+        }
+      ]
+    },
+    "header_name": {
+      "type": "PATTERN",
+      "value": "[^:]+"
+    },
+    "header_value": {
+      "type": "PATTERN",
+      "value": "[^\\n]+"
+    },
+    "newline": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "\n"
+        },
+        {
+          "type": "STRING",
+          "value": "\r\n"
+        }
+      ]
     }
   },
   "extras": [

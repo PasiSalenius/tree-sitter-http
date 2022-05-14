@@ -1,11 +1,422 @@
 [
   {
-    "type": "source_file",
+    "type": "header",
+    "named": true,
+    "fields": {
+      "header_name": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "header_name",
+            "named": true
+          }
+        ]
+      },
+      "header_value": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "header_value",
+            "named": true
+          }
+        ]
+      }
+    },
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "newline",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "header_value",
     "named": true,
     "fields": {}
   },
   {
-    "type": "hello",
+    "type": "method",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "newline",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "query_item",
+    "named": true,
+    "fields": {
+      "query_name": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "query_name",
+            "named": true
+          }
+        ]
+      },
+      "query_value": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "query_value",
+            "named": true
+          }
+        ]
+      }
+    }
+  },
+  {
+    "type": "query_name",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "query_value",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "reason",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "request_line",
+    "named": true,
+    "fields": {
+      "method": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "method",
+            "named": true
+          }
+        ]
+      },
+      "target": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "target",
+            "named": true
+          }
+        ]
+      },
+      "version": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "version",
+            "named": true
+          }
+        ]
+      }
+    }
+  },
+  {
+    "type": "source_file",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "header",
+          "named": true
+        },
+        {
+          "type": "newline",
+          "named": true
+        },
+        {
+          "type": "start_line",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "start_line",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "request_line",
+          "named": true
+        },
+        {
+          "type": "status_line",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "status_line",
+    "named": true,
+    "fields": {
+      "reason": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "reason",
+            "named": true
+          }
+        ]
+      },
+      "status": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "status",
+            "named": true
+          }
+        ]
+      },
+      "version": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "version",
+            "named": true
+          }
+        ]
+      }
+    }
+  },
+  {
+    "type": "target",
+    "named": true,
+    "fields": {
+      "path": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "path",
+            "named": true
+          }
+        ]
+      }
+    },
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "hash",
+          "named": true
+        },
+        {
+          "type": "query_item",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "\n",
     "named": false
+  },
+  {
+    "type": "\r\n",
+    "named": false
+  },
+  {
+    "type": " ",
+    "named": false
+  },
+  {
+    "type": "&",
+    "named": false
+  },
+  {
+    "type": ":",
+    "named": false
+  },
+  {
+    "type": "=",
+    "named": false
+  },
+  {
+    "type": "?",
+    "named": false
+  },
+  {
+    "type": "ACL",
+    "named": false
+  },
+  {
+    "type": "BIND",
+    "named": false
+  },
+  {
+    "type": "CHECKOUT",
+    "named": false
+  },
+  {
+    "type": "CONNECT",
+    "named": false
+  },
+  {
+    "type": "COPY",
+    "named": false
+  },
+  {
+    "type": "DELETE",
+    "named": false
+  },
+  {
+    "type": "GET",
+    "named": false
+  },
+  {
+    "type": "HEAD",
+    "named": false
+  },
+  {
+    "type": "LINK",
+    "named": false
+  },
+  {
+    "type": "LOCK",
+    "named": false
+  },
+  {
+    "type": "MERGE",
+    "named": false
+  },
+  {
+    "type": "MKACTIVITY",
+    "named": false
+  },
+  {
+    "type": "MKCALENDAR",
+    "named": false
+  },
+  {
+    "type": "MKCOL",
+    "named": false
+  },
+  {
+    "type": "MOVE",
+    "named": false
+  },
+  {
+    "type": "MSEARCH",
+    "named": false
+  },
+  {
+    "type": "NOTIFY",
+    "named": false
+  },
+  {
+    "type": "OPTIONS",
+    "named": false
+  },
+  {
+    "type": "PATCH",
+    "named": false
+  },
+  {
+    "type": "POST",
+    "named": false
+  },
+  {
+    "type": "PROPFIND",
+    "named": false
+  },
+  {
+    "type": "PROPPATCH",
+    "named": false
+  },
+  {
+    "type": "PURGE",
+    "named": false
+  },
+  {
+    "type": "PUT",
+    "named": false
+  },
+  {
+    "type": "REBIND",
+    "named": false
+  },
+  {
+    "type": "REPORT",
+    "named": false
+  },
+  {
+    "type": "SEARCH",
+    "named": false
+  },
+  {
+    "type": "SOURCE",
+    "named": false
+  },
+  {
+    "type": "SUBSCRIBE",
+    "named": false
+  },
+  {
+    "type": "TRACE",
+    "named": false
+  },
+  {
+    "type": "UNBIND",
+    "named": false
+  },
+  {
+    "type": "UNLINK",
+    "named": false
+  },
+  {
+    "type": "UNLOCK",
+    "named": false
+  },
+  {
+    "type": "UNSUBSCRIBE",
+    "named": false
+  },
+  {
+    "type": "hash",
+    "named": true
+  },
+  {
+    "type": "header_name",
+    "named": true
+  },
+  {
+    "type": "path",
+    "named": true
+  },
+  {
+    "type": "status",
+    "named": true
+  },
+  {
+    "type": "version",
+    "named": true
   }
 ]
