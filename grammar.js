@@ -2,33 +2,24 @@ module.exports = grammar({
   name: 'http',
 
   rules: {
-    source_file: $ => optional($._definition),
-
-    _definition: $ =>
+    document: $ => optional(
       seq(
-        $.start_line,
-        $.newline,
-        repeat($.header)
-      ),
-
-    start_line: $ => choice($.request_line, $.status_line),
+        choice($.request_line, $.status_line),
+        repeat1(seq($.header, '\n')),
+        optional(seq('\n', $.body)),
+      )
+    ),
 
     request_line: $ =>
-      seq(
-        field('method', $.method),
-        ' ',
-        field('target', $.target),
-        ' ',
-        field('version', $.version)
-      ),
+      seq(field('method', $.method), field('target', $.target), field('version', $.version)),
 
     method: _ => choice('GET','PUT','ACL','HEAD','POST','COPY','LOCK','MOVE','BIND','LINK','PATCH','TRACE','MKCOL','MERGE','PURGE','NOTIFY','SEARCH','UNLOCK','REBIND','UNBIND','REPORT','DELETE','UNLINK','CONNECT','MSEARCH','OPTIONS','PROPFIND','CHECKOUT','PROPPATCH','SUBSCRIBE','MKCALENDAR','MKACTIVITY','UNSUBSCRIBE','SOURCE'),
 
     target: $ =>
       seq(
         field('path', $.path),
-        optional(seq('?', repeat(seq($.query_item, optional('&'))))),
-        optional($.hash)
+        optional(seq('?', $.query_item, repeat(seq('&', $.query_item)))),
+        optional(field('hash', $.hash)),
       ),
 
     path: _ => /[^ ?#]+/,
@@ -36,44 +27,35 @@ module.exports = grammar({
     query_item: $ =>
       seq(
         field('query_name', $.query_name),
-        '=',
-        field('query_value', $.query_value)
+        optional(seq('=', field('query_value', $.query_value))),
       ),
 
     query_name: _ => /[^ =&#]+/,
 
-    query_value: _ => /[^ =&#]+/,
+    query_value: _ => /[^ &#]+/,
 
-    hash: _ => /#[^ ]*/,
+    hash: _ => /#\w*/,
 
     version: _ => /HTTP\/\d\.\d/,
 
     status_line: $ =>
-      seq(
-        field('version', $.version),
-        ' ',
-        field('status', $.status),
-        ' ',
-        field('reason', $.reason)
-      ),
+      seq(field('version', $.version), field('status', $.status), field('reason', $.reason)),
 
     status: _ => /\d+/,
 
-    reason: _ => /[^\n]+/,
+    reason: _ => /.+/,
 
     header: $ =>
       seq(
-        field('header_name', $.header_name),
-        ':',
-        repeat1(' '),
+        field('header_name', seq($.header_name, ':')),
         field('header_value', $.header_value),
-        $.newline
       ),
 
-    header_name: _ => /[^:]+/,
+    header_name: _ => /[A-Za-z-_]+/,
 
-    header_value: _ => /[^\n]+/,
+    header_value: _ => /.+/,
 
-    newline: _ => choice('\n', '\r\n'),
+    body: $ =>
+      field('body', /.+/),
   }
 });

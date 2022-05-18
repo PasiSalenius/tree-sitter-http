@@ -1,12 +1,48 @@
 [
   {
+    "type": "body",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "document",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "body",
+          "named": true
+        },
+        {
+          "type": "header",
+          "named": true
+        },
+        {
+          "type": "request_line",
+          "named": true
+        },
+        {
+          "type": "status_line",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "header",
     "named": true,
     "fields": {
       "header_name": {
-        "multiple": false,
+        "multiple": true,
         "required": true,
         "types": [
+          {
+            "type": ":",
+            "named": false
+          },
           {
             "type": "header_name",
             "named": true
@@ -23,16 +59,6 @@
           }
         ]
       }
-    },
-    "children": {
-      "multiple": false,
-      "required": true,
-      "types": [
-        {
-          "type": "newline",
-          "named": true
-        }
-      ]
     }
   },
   {
@@ -42,11 +68,6 @@
   },
   {
     "type": "method",
-    "named": true,
-    "fields": {}
-  },
-  {
-    "type": "newline",
     "named": true,
     "fields": {}
   },
@@ -66,7 +87,7 @@
       },
       "query_value": {
         "multiple": false,
-        "required": true,
+        "required": false,
         "types": [
           {
             "type": "query_value",
@@ -75,16 +96,6 @@
         ]
       }
     }
-  },
-  {
-    "type": "query_name",
-    "named": true,
-    "fields": {}
-  },
-  {
-    "type": "query_value",
-    "named": true,
-    "fields": {}
   },
   {
     "type": "reason",
@@ -128,48 +139,6 @@
     }
   },
   {
-    "type": "source_file",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": true,
-      "required": false,
-      "types": [
-        {
-          "type": "header",
-          "named": true
-        },
-        {
-          "type": "newline",
-          "named": true
-        },
-        {
-          "type": "start_line",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
-    "type": "start_line",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": false,
-      "required": true,
-      "types": [
-        {
-          "type": "request_line",
-          "named": true
-        },
-        {
-          "type": "status_line",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
     "type": "status_line",
     "named": true,
     "fields": {
@@ -209,6 +178,16 @@
     "type": "target",
     "named": true,
     "fields": {
+      "hash": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "hash",
+            "named": true
+          }
+        ]
+      },
       "path": {
         "multiple": false,
         "required": true,
@@ -225,10 +204,6 @@
       "required": false,
       "types": [
         {
-          "type": "hash",
-          "named": true
-        },
-        {
           "type": "query_item",
           "named": true
         }
@@ -237,14 +212,6 @@
   },
   {
     "type": "\n",
-    "named": false
-  },
-  {
-    "type": "\r\n",
-    "named": false
-  },
-  {
-    "type": " ",
     "named": false
   },
   {
@@ -409,6 +376,14 @@
   },
   {
     "type": "path",
+    "named": true
+  },
+  {
+    "type": "query_name",
+    "named": true
+  },
+  {
+    "type": "query_value",
     "named": true
   },
   {
