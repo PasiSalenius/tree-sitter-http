@@ -5,33 +5,6 @@
     "fields": {}
   },
   {
-    "type": "document",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": true,
-      "required": false,
-      "types": [
-        {
-          "type": "body",
-          "named": true
-        },
-        {
-          "type": "header",
-          "named": true
-        },
-        {
-          "type": "request_line",
-          "named": true
-        },
-        {
-          "type": "status_line",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
     "type": "header",
     "named": true,
     "fields": {
@@ -139,6 +112,40 @@
     }
   },
   {
+    "type": "source_file",
+    "named": true,
+    "fields": {
+      "body": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "body",
+            "named": true
+          }
+        ]
+      }
+    },
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "header",
+          "named": true
+        },
+        {
+          "type": "request_line",
+          "named": true
+        },
+        {
+          "type": "status_line",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "status_line",
     "named": true,
     "fields": {
@@ -209,10 +216,6 @@
         }
       ]
     }
-  },
-  {
-    "type": "\n",
-    "named": false
   },
   {
     "type": "&",
