@@ -79,6 +79,16 @@
     "type": "request_line",
     "named": true,
     "fields": {
+      "hash": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "hash",
+            "named": true
+          }
+        ]
+      },
       "method": {
         "multiple": false,
         "required": true,
@@ -89,12 +99,12 @@
           }
         ]
       },
-      "target": {
-        "multiple": false,
+      "path_component": {
+        "multiple": true,
         "required": true,
         "types": [
           {
-            "type": "target",
+            "type": "path_component",
             "named": true
           }
         ]
@@ -109,6 +119,16 @@
           }
         ]
       }
+    },
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "query_item",
+          "named": true
+        }
+      ]
     }
   },
   {
@@ -182,43 +202,11 @@
     }
   },
   {
-    "type": "target",
-    "named": true,
-    "fields": {
-      "hash": {
-        "multiple": false,
-        "required": false,
-        "types": [
-          {
-            "type": "hash",
-            "named": true
-          }
-        ]
-      },
-      "path": {
-        "multiple": false,
-        "required": true,
-        "types": [
-          {
-            "type": "path",
-            "named": true
-          }
-        ]
-      }
-    },
-    "children": {
-      "multiple": true,
-      "required": false,
-      "types": [
-        {
-          "type": "query_item",
-          "named": true
-        }
-      ]
-    }
+    "type": "&",
+    "named": false
   },
   {
-    "type": "&",
+    "type": "/",
     "named": false
   },
   {
@@ -378,7 +366,7 @@
     "named": true
   },
   {
-    "type": "path",
+    "type": "path_component",
     "named": true
   },
   {

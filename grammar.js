@@ -13,18 +13,21 @@ module.exports = grammar({
     ),
 
     request_line: $ =>
-      seq(field('method', $.method), $._space, field('target', $.target), $._space, field('version', $.version), $._newline),
+      seq(field('method', $.method), $._space, $._target, $._space, field('version', $.version), $._newline),
 
     method: _ => choice('GET','PUT','ACL','HEAD','POST','COPY','LOCK','MOVE','BIND','LINK','PATCH','TRACE','MKCOL','MERGE','PURGE','NOTIFY','SEARCH','UNLOCK','REBIND','UNBIND','REPORT','DELETE','UNLINK','CONNECT','MSEARCH','OPTIONS','PROPFIND','CHECKOUT','PROPPATCH','SUBSCRIBE','MKCALENDAR','MKACTIVITY','UNSUBSCRIBE','SOURCE'),
 
-    target: $ =>
+    _target: $ =>
       seq(
-        field('path', $.path),
+        $._path,
         optional(seq('?', $.query_item, repeat(seq('&', $.query_item)))),
         optional(field('hash', $.hash)),
       ),
 
-    path: _ => /[^ ?#]+/,
+    _path: $ =>
+      repeat1(seq('/', field('path_component', $.path_component))),
+
+    path_component: _ => /[^ /?#]*/,
 
     query_item: $ =>
       seq(
@@ -34,7 +37,7 @@ module.exports = grammar({
 
     query_name: _ => /[^ =&#]+/,
 
-    query_value: _ => /[^ &#]+/,
+    query_value: _ => /[^ &#]*/,
 
     hash: _ => /#\w*/,
 

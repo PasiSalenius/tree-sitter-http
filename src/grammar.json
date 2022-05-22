@@ -75,12 +75,8 @@
           "name": "_space"
         },
         {
-          "type": "FIELD",
-          "name": "target",
-          "content": {
-            "type": "SYMBOL",
-            "name": "target"
-          }
+          "type": "SYMBOL",
+          "name": "_target"
         },
         {
           "type": "SYMBOL",
@@ -241,16 +237,12 @@
         }
       ]
     },
-    "target": {
+    "_target": {
       "type": "SEQ",
       "members": [
         {
-          "type": "FIELD",
-          "name": "path",
-          "content": {
-            "type": "SYMBOL",
-            "name": "path"
-          }
+          "type": "SYMBOL",
+          "name": "_path"
         },
         {
           "type": "CHOICE",
@@ -307,9 +299,29 @@
         }
       ]
     },
-    "path": {
+    "_path": {
+      "type": "REPEAT1",
+      "content": {
+        "type": "SEQ",
+        "members": [
+          {
+            "type": "STRING",
+            "value": "/"
+          },
+          {
+            "type": "FIELD",
+            "name": "path_component",
+            "content": {
+              "type": "SYMBOL",
+              "name": "path_component"
+            }
+          }
+        ]
+      }
+    },
+    "path_component": {
       "type": "PATTERN",
-      "value": "[^ ?#]+"
+      "value": "[^ /?#]*"
     },
     "query_item": {
       "type": "SEQ",
@@ -355,7 +367,7 @@
     },
     "query_value": {
       "type": "PATTERN",
-      "value": "[^ &#]+"
+      "value": "[^ &#]*"
     },
     "hash": {
       "type": "PATTERN",
