@@ -29,6 +29,21 @@
     "fields": {}
   },
   {
+    "type": "html_body",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "javascript_body",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "json_body",
+    "named": true,
+    "fields": {}
+  },
+  {
     "type": "method",
     "named": true,
     "fields": {}
@@ -91,48 +106,7 @@
   {
     "type": "source_file",
     "named": true,
-    "fields": {
-      "html_body": {
-        "multiple": false,
-        "required": false,
-        "types": [
-          {
-            "type": "body",
-            "named": true
-          }
-        ]
-      },
-      "javascript_body": {
-        "multiple": false,
-        "required": false,
-        "types": [
-          {
-            "type": "body",
-            "named": true
-          }
-        ]
-      },
-      "json_body": {
-        "multiple": false,
-        "required": false,
-        "types": [
-          {
-            "type": "body",
-            "named": true
-          }
-        ]
-      },
-      "xml_body": {
-        "multiple": false,
-        "required": false,
-        "types": [
-          {
-            "type": "body",
-            "named": true
-          }
-        ]
-      }
-    },
+    "fields": {},
     "children": {
       "multiple": true,
       "required": false,
@@ -146,11 +120,27 @@
           "named": true
         },
         {
+          "type": "html_body",
+          "named": true
+        },
+        {
+          "type": "javascript_body",
+          "named": true
+        },
+        {
+          "type": "json_body",
+          "named": true
+        },
+        {
           "type": "request_line",
           "named": true
         },
         {
           "type": "status_line",
+          "named": true
+        },
+        {
+          "type": "xml_body",
           "named": true
         }
       ]
@@ -178,6 +168,11 @@
         }
       ]
     }
+  },
+  {
+    "type": "xml_body",
+    "named": true,
+    "fields": {}
   },
   {
     "type": "&",

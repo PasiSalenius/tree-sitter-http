@@ -11,28 +11,28 @@ module.exports = grammar({
           repeat($.header),
           alias($._html_content, $.header),
           repeat($.header),
-          optional(seq($._newline, field('html_body', $.body))),
+          optional(seq($._newline, $.html_body)),
         ),
         seq(
           $._start_line,
           repeat($.header),
           alias($._javascript_content, $.header),
           repeat($.header),
-          optional(seq($._newline, field('javascript_body', $.body))),
+          optional(seq($._newline, $.javascript_body)),
         ),
         seq(
           $._start_line,
           repeat($.header),
           alias($._json_content, $.header),
           repeat($.header),
-          optional(seq($._newline, field('json_body', $.body))),
+          optional(seq($._newline, $.json_body)),
         ),
         seq(
           $._start_line,
           repeat($.header),
           alias($._xml_content, $.header),
           repeat($.header),
-          optional(seq($._newline, field('xml_body', $.body))),
+          optional(seq($._newline, $.xml_body)),
         ),
         seq(
           $._start_line,
@@ -110,6 +110,10 @@ module.exports = grammar({
     header_value: _ => /.*/,
 
     body: $ => repeat1(seq($._data, repeat($._newline))),
+    html_body: $ => repeat1(seq($._data, repeat($._newline))),
+    javascript_body: $ => repeat1(seq($._data, repeat($._newline))),
+    json_body: $ => repeat1(seq($._data, repeat($._newline))),
+    xml_body: $ => repeat1(seq($._data, repeat($._newline))),
 
     _whitespace: _ => /\s+/,
     _space: _ => ' ',
