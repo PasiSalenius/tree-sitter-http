@@ -7,31 +7,20 @@
   {
     "type": "header",
     "named": true,
-    "fields": {
-      "header_name": {
-        "multiple": true,
-        "required": true,
-        "types": [
-          {
-            "type": ":",
-            "named": false
-          },
-          {
-            "type": "header_name",
-            "named": true
-          }
-        ]
-      },
-      "header_value": {
-        "multiple": false,
-        "required": true,
-        "types": [
-          {
-            "type": "header_value",
-            "named": true
-          }
-        ]
-      }
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "header_name",
+          "named": true
+        },
+        {
+          "type": "header_value",
+          "named": true
+        }
+      ]
     }
   },
   {
@@ -47,27 +36,20 @@
   {
     "type": "query_item",
     "named": true,
-    "fields": {
-      "query_name": {
-        "multiple": false,
-        "required": true,
-        "types": [
-          {
-            "type": "query_name",
-            "named": true
-          }
-        ]
-      },
-      "query_value": {
-        "multiple": false,
-        "required": false,
-        "types": [
-          {
-            "type": "query_value",
-            "named": true
-          }
-        ]
-      }
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "query_name",
+          "named": true
+        },
+        {
+          "type": "query_value",
+          "named": true
+        }
+      ]
     }
   },
   {
@@ -78,54 +60,29 @@
   {
     "type": "request_line",
     "named": true,
-    "fields": {
-      "hash": {
-        "multiple": false,
-        "required": false,
-        "types": [
-          {
-            "type": "hash",
-            "named": true
-          }
-        ]
-      },
-      "method": {
-        "multiple": false,
-        "required": true,
-        "types": [
-          {
-            "type": "method",
-            "named": true
-          }
-        ]
-      },
-      "path_component": {
-        "multiple": true,
-        "required": true,
-        "types": [
-          {
-            "type": "path_component",
-            "named": true
-          }
-        ]
-      },
-      "version": {
-        "multiple": false,
-        "required": true,
-        "types": [
-          {
-            "type": "version",
-            "named": true
-          }
-        ]
-      }
-    },
+    "fields": {},
     "children": {
       "multiple": true,
-      "required": false,
+      "required": true,
       "types": [
         {
+          "type": "hash",
+          "named": true
+        },
+        {
+          "type": "method",
+          "named": true
+        },
+        {
+          "type": "path_component",
+          "named": true
+        },
+        {
           "type": "query_item",
+          "named": true
+        },
+        {
+          "type": "version",
           "named": true
         }
       ]
@@ -135,7 +92,37 @@
     "type": "source_file",
     "named": true,
     "fields": {
-      "body": {
+      "html_body": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "body",
+            "named": true
+          }
+        ]
+      },
+      "javascript_body": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "body",
+            "named": true
+          }
+        ]
+      },
+      "json_body": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "body",
+            "named": true
+          }
+        ]
+      },
+      "xml_body": {
         "multiple": false,
         "required": false,
         "types": [
@@ -150,6 +137,10 @@
       "multiple": true,
       "required": false,
       "types": [
+        {
+          "type": "body",
+          "named": true
+        },
         {
           "type": "header",
           "named": true
@@ -168,37 +159,24 @@
   {
     "type": "status_line",
     "named": true,
-    "fields": {
-      "reason": {
-        "multiple": false,
-        "required": true,
-        "types": [
-          {
-            "type": "reason",
-            "named": true
-          }
-        ]
-      },
-      "status": {
-        "multiple": false,
-        "required": true,
-        "types": [
-          {
-            "type": "status",
-            "named": true
-          }
-        ]
-      },
-      "version": {
-        "multiple": false,
-        "required": true,
-        "types": [
-          {
-            "type": "version",
-            "named": true
-          }
-        ]
-      }
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "reason",
+          "named": true
+        },
+        {
+          "type": "status",
+          "named": true
+        },
+        {
+          "type": "version",
+          "named": true
+        }
+      ]
     }
   },
   {
