@@ -895,7 +895,7 @@
     },
     "header_name": {
       "type": "PATTERN",
-      "value": "[A-Za-z-_]+"
+      "value": "[A-Za-z0-9-_]+"
     },
     "header_value": {
       "type": "PATTERN",

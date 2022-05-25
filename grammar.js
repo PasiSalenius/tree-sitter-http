@@ -106,7 +106,7 @@ module.exports = grammar({
     _json_header_value: _ => /application\/json.*/,
     _xml_header_value: _ => choice(/application\/xml.*/, /application\/xhtml\+xml.*/),
 
-    header_name: _ => /[A-Za-z-_]+/,
+    header_name: _ => /[A-Za-z0-9-_]+/,
     header_value: _ => /.*/,
 
     body: $ => repeat1(seq($._data, repeat($._newline))),
