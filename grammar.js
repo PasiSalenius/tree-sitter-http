@@ -16,6 +16,13 @@ module.exports = grammar({
         seq(
           $._start_line,
           repeat($.header),
+          alias($._css_content, $.header),
+          repeat($.header),
+          optional(seq($._newline, $.css_body)),
+        ),
+        seq(
+          $._start_line,
+          repeat($.header),
           alias($._javascript_content, $.header),
           repeat($.header),
           optional(seq($._newline, $.javascript_body)),
@@ -84,6 +91,9 @@ module.exports = grammar({
     _html_content: $ =>
       seq(alias($._content_type_name, $.header_name), ':', $._whitespace, alias($._html_header_value, $.header_value), $._newline),
 
+    _css_content: $ =>
+      seq(alias($._content_type_name, $.header_name), ':', $._whitespace, alias($._css_header_value, $.header_value), $._newline),
+
     _javascript_content: $ =>
       seq(alias($._content_type_name, $.header_name), ':', $._whitespace, alias($._javascript_header_value, $.header_value), $._newline),
 
@@ -102,7 +112,8 @@ module.exports = grammar({
     _content_type_name: _ => /[Cc]ontent-[Tt]ype/,
 
     _html_header_value: _ => /text\/html.*/,
-    _javascript_header_value: _ => choice(/application\/javascript.*/, /text\/javascript.*/),
+    _css_header_value: _ => /text\/css.*/,
+    _javascript_header_value: _ => choice(/application\/javascript.*/, /application\/x-javascript.*/, /text\/javascript.*/),
     _json_header_value: _ => /application\/json.*/,
     _xml_header_value: _ => choice(/application\/xml.*/, /application\/xhtml\+xml.*/),
 
@@ -111,6 +122,7 @@ module.exports = grammar({
 
     body: $ => repeat1(seq($._data, repeat($._newline))),
     html_body: $ => repeat1(seq($._data, repeat($._newline))),
+    css_body: $ => repeat1(seq($._data, repeat($._newline))),
     javascript_body: $ => repeat1(seq($._data, repeat($._newline))),
     json_body: $ => repeat1(seq($._data, repeat($._newline))),
     xml_body: $ => repeat1(seq($._data, repeat($._newline))),

@@ -5,6 +5,11 @@
     "fields": {}
   },
   {
+    "type": "css_body",
+    "named": true,
+    "fields": {}
+  },
+  {
     "type": "header",
     "named": true,
     "fields": {},
@@ -113,6 +118,10 @@
       "types": [
         {
           "type": "body",
+          "named": true
+        },
+        {
+          "type": "css_body",
           "named": true
         },
         {
