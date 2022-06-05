@@ -120,12 +120,12 @@ module.exports = grammar({
     header_name: _ => /[A-Za-z0-9-_]+/,
     header_value: _ => /.*/,
 
-    body: $ => repeat1(seq($._data, repeat($._newline))),
-    html_body: $ => repeat1(seq($._data, repeat($._newline))),
-    css_body: $ => repeat1(seq($._data, repeat($._newline))),
-    javascript_body: $ => repeat1(seq($._data, repeat($._newline))),
-    json_body: $ => repeat1(seq($._data, repeat($._newline))),
-    xml_body: $ => repeat1(seq($._data, repeat($._newline))),
+    body: $ => repeat1(choice($._data, $._newline)),
+    html_body: $ => repeat1(choice($._data, $._newline)),
+    css_body: $ => repeat1(choice($._data, $._newline)),
+    javascript_body: $ => repeat1(choice($._data, $._newline)),
+    json_body: $ => repeat1(choice($._data, $._newline)),
+    xml_body: $ => repeat1(choice($._data, $._newline)),
 
     _whitespace: _ => /\s+/,
     _space: _ => ' ',

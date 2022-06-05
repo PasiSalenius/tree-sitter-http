@@ -1000,18 +1000,15 @@
     "body": {
       "type": "REPEAT1",
       "content": {
-        "type": "SEQ",
+        "type": "CHOICE",
         "members": [
           {
             "type": "SYMBOL",
             "name": "_data"
           },
           {
-            "type": "REPEAT",
-            "content": {
-              "type": "SYMBOL",
-              "name": "_newline"
-            }
+            "type": "SYMBOL",
+            "name": "_newline"
           }
         ]
       }
@@ -1019,18 +1016,15 @@
     "html_body": {
       "type": "REPEAT1",
       "content": {
-        "type": "SEQ",
+        "type": "CHOICE",
         "members": [
           {
             "type": "SYMBOL",
             "name": "_data"
           },
           {
-            "type": "REPEAT",
-            "content": {
-              "type": "SYMBOL",
-              "name": "_newline"
-            }
+            "type": "SYMBOL",
+            "name": "_newline"
           }
         ]
       }
@@ -1038,18 +1032,15 @@
     "css_body": {
       "type": "REPEAT1",
       "content": {
-        "type": "SEQ",
+        "type": "CHOICE",
         "members": [
           {
             "type": "SYMBOL",
             "name": "_data"
           },
           {
-            "type": "REPEAT",
-            "content": {
-              "type": "SYMBOL",
-              "name": "_newline"
-            }
+            "type": "SYMBOL",
+            "name": "_newline"
           }
         ]
       }
@@ -1057,18 +1048,15 @@
     "javascript_body": {
       "type": "REPEAT1",
       "content": {
-        "type": "SEQ",
+        "type": "CHOICE",
         "members": [
           {
             "type": "SYMBOL",
             "name": "_data"
           },
           {
-            "type": "REPEAT",
-            "content": {
-              "type": "SYMBOL",
-              "name": "_newline"
-            }
+            "type": "SYMBOL",
+            "name": "_newline"
           }
         ]
       }
@@ -1076,18 +1064,15 @@
     "json_body": {
       "type": "REPEAT1",
       "content": {
-        "type": "SEQ",
+        "type": "CHOICE",
         "members": [
           {
             "type": "SYMBOL",
             "name": "_data"
           },
           {
-            "type": "REPEAT",
-            "content": {
-              "type": "SYMBOL",
-              "name": "_newline"
-            }
+            "type": "SYMBOL",
+            "name": "_newline"
           }
         ]
       }
@@ -1095,18 +1080,15 @@
     "xml_body": {
       "type": "REPEAT1",
       "content": {
-        "type": "SEQ",
+        "type": "CHOICE",
         "members": [
           {
             "type": "SYMBOL",
             "name": "_data"
           },
           {
-            "type": "REPEAT",
-            "content": {
-              "type": "SYMBOL",
-              "name": "_newline"
-            }
+            "type": "SYMBOL",
+            "name": "_newline"
           }
         ]
       }
