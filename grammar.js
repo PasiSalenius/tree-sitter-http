@@ -126,7 +126,7 @@ module.exports = grammar({
     _css_header_value: _ => /text\/css.*/,
     _javascript_header_value: _ => choice(/application\/javascript.*/, /application\/x-javascript.*/, /text\/javascript.*/),
     _json_header_value: _ => /application\/json.*/,
-    _xml_header_value: _ => choice(/text\/xml.*/, /application\/xml.*/, /application\/xhtml\+xml.*/),
+    _xml_header_value: _ => choice(/text\/xml.*/, /application\/xml.*/, /application\/xhtml\+xml.*/, /image\/svg\+xml.*/),
 
     header_name: _ => /[A-Za-z0-9-_]+/,
     header_value: _ => /.*/,
