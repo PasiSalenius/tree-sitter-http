@@ -25,6 +25,59 @@
                   "type": "ALIAS",
                   "content": {
                     "type": "SYMBOL",
+                    "name": "_form_content"
+                  },
+                  "named": true,
+                  "value": "header"
+                },
+                {
+                  "type": "REPEAT",
+                  "content": {
+                    "type": "SYMBOL",
+                    "name": "header"
+                  }
+                },
+                {
+                  "type": "CHOICE",
+                  "members": [
+                    {
+                      "type": "SEQ",
+                      "members": [
+                        {
+                          "type": "SYMBOL",
+                          "name": "_newline"
+                        },
+                        {
+                          "type": "SYMBOL",
+                          "name": "form_body"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "BLANK"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "SEQ",
+              "members": [
+                {
+                  "type": "SYMBOL",
+                  "name": "_start_line"
+                },
+                {
+                  "type": "REPEAT",
+                  "content": {
+                    "type": "SYMBOL",
+                    "name": "header"
+                  }
+                },
+                {
+                  "type": "ALIAS",
+                  "content": {
+                    "type": "SYMBOL",
                     "name": "_html_content"
                   },
                   "named": true,
@@ -713,6 +766,41 @@
       "type": "PATTERN",
       "value": ".+"
     },
+    "_form_content": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "ALIAS",
+          "content": {
+            "type": "SYMBOL",
+            "name": "_content_type_name"
+          },
+          "named": true,
+          "value": "header_name"
+        },
+        {
+          "type": "STRING",
+          "value": ":"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "_whitespace"
+        },
+        {
+          "type": "ALIAS",
+          "content": {
+            "type": "SYMBOL",
+            "name": "_form_header_value"
+          },
+          "named": true,
+          "value": "header_value"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "_newline"
+        }
+      ]
+    },
     "_html_content": {
       "type": "SEQ",
       "members": [
@@ -947,6 +1035,10 @@
       "type": "PATTERN",
       "value": "[Cc]ontent-[Tt]ype"
     },
+    "_form_header_value": {
+      "type": "PATTERN",
+      "value": "application\\/x-www-form-urlencoded.*"
+    },
     "_html_header_value": {
       "type": "PATTERN",
       "value": "text\\/html.*"
@@ -981,6 +1073,10 @@
       "members": [
         {
           "type": "PATTERN",
+          "value": "text\\/xml.*"
+        },
+        {
+          "type": "PATTERN",
           "value": "application\\/xml.*"
         },
         {
@@ -998,6 +1094,22 @@
       "value": ".*"
     },
     "body": {
+      "type": "REPEAT1",
+      "content": {
+        "type": "CHOICE",
+        "members": [
+          {
+            "type": "SYMBOL",
+            "name": "_data"
+          },
+          {
+            "type": "SYMBOL",
+            "name": "_newline"
+          }
+        ]
+      }
+    },
+    "form_body": {
       "type": "REPEAT1",
       "content": {
         "type": "CHOICE",

@@ -10,6 +10,11 @@
     "fields": {}
   },
   {
+    "type": "form_body",
+    "named": true,
+    "fields": {}
+  },
+  {
     "type": "header",
     "named": true,
     "fields": {},
@@ -122,6 +127,10 @@
         },
         {
           "type": "css_body",
+          "named": true
+        },
+        {
+          "type": "form_body",
           "named": true
         },
         {
