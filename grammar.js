@@ -16,6 +16,13 @@ module.exports = grammar({
         seq(
           $._start_line,
           repeat($.header),
+          alias($._multipart_content, $.header),
+          repeat($.header),
+          optional(seq($._newline, $.multipart_body)),
+        ),
+        seq(
+          $._start_line,
+          repeat($.header),
           alias($._html_content, $.header),
           repeat($.header),
           optional(seq($._newline, $.html_body)),
@@ -98,6 +105,9 @@ module.exports = grammar({
     _form_content: $ =>
       seq(alias($._content_type_name, $.header_name), ':', $._whitespace, alias($._form_header_value, $.header_value), $._newline),
 
+    _multipart_content: $ =>
+      seq(alias($._content_type_name, $.header_name), ':', $._whitespace, alias($._multipart_header_value, $.header_value), $._newline),
+
     _html_content: $ =>
       seq(alias($._content_type_name, $.header_name), ':', $._whitespace, alias($._html_header_value, $.header_value), $._newline),
 
@@ -122,6 +132,7 @@ module.exports = grammar({
     _content_type_name: _ => /[Cc]ontent-[Tt]ype/,
 
     _form_header_value: _ => /application\/x-www-form-urlencoded.*/,
+    _multipart_header_value: _ => /multipart\/.*/,
     _html_header_value: _ => /text\/html.*/,
     _css_header_value: _ => /text\/css.*/,
     _javascript_header_value: _ => choice(/application\/javascript.*/, /application\/x-javascript.*/, /text\/javascript.*/),
@@ -133,6 +144,7 @@ module.exports = grammar({
 
     body: $ => repeat1(choice($._data, $._newline)),
     form_body: $ => repeat1(choice($._data, $._newline)),
+    multipart_body: $ => repeat1(choice($._data, $._newline)),
     html_body: $ => repeat1(choice($._data, $._newline)),
     css_body: $ => repeat1(choice($._data, $._newline)),
     javascript_body: $ => repeat1(choice($._data, $._newline)),

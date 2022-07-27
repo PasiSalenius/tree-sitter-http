@@ -59,6 +59,11 @@
     "fields": {}
   },
   {
+    "type": "multipart_body",
+    "named": true,
+    "fields": {}
+  },
+  {
     "type": "query_item",
     "named": true,
     "fields": {},
@@ -147,6 +152,10 @@
         },
         {
           "type": "json_body",
+          "named": true
+        },
+        {
+          "type": "multipart_body",
           "named": true
         },
         {
