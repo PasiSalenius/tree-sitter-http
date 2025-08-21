@@ -127,9 +127,9 @@ module.exports = grammar({
       seq(alias($._content_type_name, $.header_name), ':', $._whitespace, $.header_value, $._newline),
 
     header: $ =>
-      seq($.header_name, optional($._whitespace), ':', $._whitespace, optional($.header_value), $._newline),
+      seq($.header_name, ':', $._whitespace, $.header_value, $._newline),
 
-    _content_type_name: _ => /content-type/i,
+    _content_type_name: _ => /[Cc]ontent-[Tt]ype/,
 
     _form_header_value: _ => /application\/x-www-form-urlencoded.*/,
     _multipart_header_value: _ => /multipart\/.*/,
@@ -151,7 +151,7 @@ module.exports = grammar({
     json_body: $ => repeat1(choice($._data, $._newline)),
     xml_body: $ => repeat1(choice($._data, $._newline)),
 
-    _whitespace: _ => /\s+/,
+    _whitespace: _ => /[ \t]+/,
     _newline: _ => choice('\n', '\r', '\r\n', '\0'),
     _data: _ => /.+/,
   }

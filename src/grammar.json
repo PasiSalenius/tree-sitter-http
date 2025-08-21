@@ -1,5 +1,4 @@
 {
-  "$schema": "https://tree-sitter.github.io/tree-sitter/assets/schemas/grammar.schema.json",
   "name": "http",
   "rules": {
     "source_file": {
@@ -1103,18 +1102,6 @@
           "name": "header_name"
         },
         {
-          "type": "CHOICE",
-          "members": [
-            {
-              "type": "SYMBOL",
-              "name": "_whitespace"
-            },
-            {
-              "type": "BLANK"
-            }
-          ]
-        },
-        {
           "type": "STRING",
           "value": ":"
         },
@@ -1123,16 +1110,8 @@
           "name": "_whitespace"
         },
         {
-          "type": "CHOICE",
-          "members": [
-            {
-              "type": "SYMBOL",
-              "name": "header_value"
-            },
-            {
-              "type": "BLANK"
-            }
-          ]
+          "type": "SYMBOL",
+          "name": "header_value"
         },
         {
           "type": "SYMBOL",
@@ -1142,8 +1121,7 @@
     },
     "_content_type_name": {
       "type": "PATTERN",
-      "value": "content-type",
-      "flags": "i"
+      "value": "[Cc]ontent-[Tt]ype"
     },
     "_form_header_value": {
       "type": "PATTERN",
@@ -1350,7 +1328,7 @@
     },
     "_whitespace": {
       "type": "PATTERN",
-      "value": "\\s+"
+      "value": "[ \\t]+"
     },
     "_newline": {
       "type": "CHOICE",
@@ -1383,6 +1361,6 @@
   "precedences": [],
   "externals": [],
   "inline": [],
-  "supertypes": [],
-  "reserved": {}
+  "supertypes": []
 }
+
