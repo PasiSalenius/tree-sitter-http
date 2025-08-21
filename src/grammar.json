@@ -497,16 +497,16 @@
           "name": "method"
         },
         {
-          "type": "SYMBOL",
-          "name": "_space"
+          "type": "STRING",
+          "value": " "
         },
         {
           "type": "SYMBOL",
           "name": "_target"
         },
         {
-          "type": "SYMBOL",
-          "name": "_space"
+          "type": "STRING",
+          "value": " "
         },
         {
           "type": "SYMBOL",
@@ -791,16 +791,16 @@
           "name": "version"
         },
         {
-          "type": "SYMBOL",
-          "name": "_space"
+          "type": "STRING",
+          "value": " "
         },
         {
           "type": "SYMBOL",
           "name": "status"
         },
         {
-          "type": "SYMBOL",
-          "name": "_space"
+          "type": "STRING",
+          "value": " "
         },
         {
           "type": "SYMBOL",
@@ -1103,6 +1103,18 @@
           "name": "header_name"
         },
         {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SYMBOL",
+              "name": "_whitespace"
+            },
+            {
+              "type": "BLANK"
+            }
+          ]
+        },
+        {
           "type": "STRING",
           "value": ":"
         },
@@ -1111,8 +1123,16 @@
           "name": "_whitespace"
         },
         {
-          "type": "SYMBOL",
-          "name": "header_value"
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SYMBOL",
+              "name": "header_value"
+            },
+            {
+              "type": "BLANK"
+            }
+          ]
         },
         {
           "type": "SYMBOL",
@@ -1159,8 +1179,17 @@
       ]
     },
     "_json_header_value": {
-      "type": "PATTERN",
-      "value": "application\\/json.*"
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "PATTERN",
+          "value": "application\\/json.*"
+        },
+        {
+          "type": "PATTERN",
+          "value": "application\\/x-amz-json-*"
+        }
+      ]
     },
     "_xml_header_value": {
       "type": "CHOICE",
@@ -1323,13 +1352,26 @@
       "type": "PATTERN",
       "value": "\\s+"
     },
-    "_space": {
-      "type": "STRING",
-      "value": " "
-    },
     "_newline": {
-      "type": "PATTERN",
-      "value": "\\r?\\n"
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "\n"
+        },
+        {
+          "type": "STRING",
+          "value": "\r"
+        },
+        {
+          "type": "STRING",
+          "value": "\r\n"
+        },
+        {
+          "type": "STRING",
+          "value": "\u0000"
+        }
+      ]
     },
     "_data": {
       "type": "PATTERN",

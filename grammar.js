@@ -73,7 +73,7 @@ module.exports = grammar({
     _start_line: $ => choice($.request_line, $.status_line),
 
     request_line: $ =>
-      seq($.method, $._space, $._target, $._space, $.version, $._newline),
+      seq($.method, ' ', $._target, ' ', $.version, $._newline),
 
     method: _ => choice('GET','PUT','ACL','HEAD','POST','COPY','LOCK','MOVE','BIND','LINK','PATCH','TRACE','MKCOL','MERGE','PURGE','NOTIFY','SEARCH','UNLOCK','REBIND','UNBIND','REPORT','DELETE','UNLINK','CONNECT','MSEARCH','OPTIONS','PROPFIND','CHECKOUT','PROPPATCH','SUBSCRIBE','MKCALENDAR','MKACTIVITY','UNSUBSCRIBE','SOURCE'),
 
@@ -96,7 +96,7 @@ module.exports = grammar({
     version: _ => /HTTP\/\d\.\d/,
 
     status_line: $ =>
-      seq($.version, $._space, $.status, $._space, $.reason, $._newline),
+      seq($.version, ' ', $.status, ' ', $.reason, $._newline),
 
     status: _ => /\d+/,
 
@@ -127,7 +127,7 @@ module.exports = grammar({
       seq(alias($._content_type_name, $.header_name), ':', $._whitespace, $.header_value, $._newline),
 
     header: $ =>
-      seq($.header_name, ':', $._whitespace, $.header_value, $._newline),
+      seq($.header_name, optional($._whitespace), ':', $._whitespace, optional($.header_value), $._newline),
 
     _content_type_name: _ => /content-type/i,
 
@@ -136,7 +136,7 @@ module.exports = grammar({
     _html_header_value: _ => /text\/html.*/,
     _css_header_value: _ => /text\/css.*/,
     _javascript_header_value: _ => choice(/application\/javascript.*/, /application\/x-javascript.*/, /text\/javascript.*/),
-    _json_header_value: _ => /application\/json.*/,
+    _json_header_value: _ => choice(/application\/json.*/, /application\/x-amz-json-*/),
     _xml_header_value: _ => choice(/text\/xml.*/, /application\/xml.*/, /application\/xhtml\+xml.*/, /image\/svg\+xml.*/),
 
     header_name: _ => /[A-Za-z0-9-_]+/,
@@ -152,8 +152,7 @@ module.exports = grammar({
     xml_body: $ => repeat1(choice($._data, $._newline)),
 
     _whitespace: _ => /\s+/,
-    _space: _ => ' ',
-    _newline: _ => /\r?\n/,
+    _newline: _ => choice('\n', '\r', '\r\n', '\0'),
     _data: _ => /.+/,
   }
 });
