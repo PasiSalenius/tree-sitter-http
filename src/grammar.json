@@ -776,7 +776,7 @@
     },
     "hash": {
       "type": "PATTERN",
-      "value": "#\\w*"
+      "value": "#[^ ]*"
     },
     "version": {
       "type": "PATTERN",

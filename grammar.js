@@ -91,7 +91,7 @@ module.exports = grammar({
     query_name: _ => /[^ =&#]+/,
     query_value: _ => /[^ &#]*/,
 
-    hash: _ => /#\w*/,
+    hash: _ => /#[^ ]*/,
 
     version: _ => /HTTP\/\d\.\d/,
 
