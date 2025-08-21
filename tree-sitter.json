@@ -1,0 +1,39 @@
+{
+  "$schema": "https://tree-sitter.github.io/tree-sitter/assets/schemas/config.schema.json",
+  "grammars": [
+    {
+      "name": "http",
+      "camelcase": "Http",
+      "title": "HTTP",
+      "scope": "source.http",
+      "file-types": [
+        "http"
+      ],
+      "injection-regex": "^http$",
+      "class-name": "TreeSitterHttp"
+    }
+  ],
+  "metadata": {
+    "version": "0.1.0",
+    "license": "MIT",
+    "description": "Tree-sitter parser for HTTP",
+    "authors": [
+      {
+        "name": "Pasi Salenius",
+        "url": "https://github.com/PasiSalenius"
+      }
+    ],
+    "links": {
+      "repository": "https://github.com/PasiSalenius/tree-sitter-http.git"
+    }
+  },
+  "bindings": {
+    "c": true,
+    "go": false,
+    "node": false,
+    "python": false,
+    "rust": false,
+    "swift": false,
+    "zig": false
+  }
+}

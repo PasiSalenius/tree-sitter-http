@@ -121,6 +121,7 @@
   {
     "type": "source_file",
     "named": true,
+    "root": true,
     "fields": {},
     "children": {
       "multiple": true,
@@ -200,6 +201,10 @@
     "type": "xml_body",
     "named": true,
     "fields": {}
+  },
+  {
+    "type": " ",
+    "named": false
   },
   {
     "type": "&",

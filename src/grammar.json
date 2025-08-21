@@ -1,4 +1,5 @@
 {
+  "$schema": "https://tree-sitter.github.io/tree-sitter/assets/schemas/grammar.schema.json",
   "name": "http",
   "rules": {
     "source_file": {
@@ -1121,7 +1122,8 @@
     },
     "_content_type_name": {
       "type": "PATTERN",
-      "value": "[Cc]ontent-[Tt]ype"
+      "value": "content-type",
+      "flags": "i"
     },
     "_form_header_value": {
       "type": "PATTERN",
@@ -1339,6 +1341,6 @@
   "precedences": [],
   "externals": [],
   "inline": [],
-  "supertypes": []
+  "supertypes": [],
+  "reserved": {}
 }
-

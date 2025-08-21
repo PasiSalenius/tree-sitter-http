@@ -129,7 +129,7 @@ module.exports = grammar({
     header: $ =>
       seq($.header_name, ':', $._whitespace, $.header_value, $._newline),
 
-    _content_type_name: _ => /[Cc]ontent-[Tt]ype/,
+    _content_type_name: _ => /content-type/i,
 
     _form_header_value: _ => /application\/x-www-form-urlencoded.*/,
     _multipart_header_value: _ => /multipart\/.*/,
