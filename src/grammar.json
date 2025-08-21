@@ -1165,7 +1165,7 @@
         },
         {
           "type": "PATTERN",
-          "value": "application\\/x-amz-json-*"
+          "value": "application\\/x-amz-json-.*"
         }
       ]
     },
