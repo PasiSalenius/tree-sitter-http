@@ -780,7 +780,7 @@
     },
     "version": {
       "type": "PATTERN",
-      "value": "HTTP\\/\\d\\.\\d"
+      "value": "HTTP\\/\\d(\\.\\d)?"
     },
     "status_line": {
       "type": "SEQ",

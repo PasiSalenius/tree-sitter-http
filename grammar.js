@@ -93,7 +93,7 @@ module.exports = grammar({
 
     hash: _ => /#[^ ]*/,
 
-    version: _ => /HTTP\/\d\.\d/,
+    version: _ => /HTTP\/\d(\.\d)?/,
 
     status_line: $ =>
       seq($.version, ' ', $.status, ' ', $.reason, $._newline),
